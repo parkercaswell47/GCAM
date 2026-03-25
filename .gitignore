@@ -1,21 +1,29 @@
-# Ignore the full GCAM input/executable/libs install
+# GCAM install files
 exe/
 libs/
 input/
 logs/
 restart/
+Additional Licenses/
+CONTRIBUTING.md
+LICENSE.md
+ModelInterface/
 
-# Ignore large database outputs
+# Large database outputs
 output/database_basexdb/
 
-# But track notebooks and scenario XMLs
-!notebooks/
-!scenarios/
+# Virtual environment
+.venv/
+
+# Jupyter
+.ipynb_checkpoints/
 
 # Python
 __pycache__/
 *.pyc
-.ipynb_checkpoints/
 
 # macOS
 .DS_Store
+
+# Claude
+.claude/

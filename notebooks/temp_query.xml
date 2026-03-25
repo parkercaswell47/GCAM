@@ -1,0 +1,22 @@
+# 1. Search for the query variable in your notebook
+query_var = None
+for name, value in list(globals().items()):
+    if isinstance(value, str) and ("<emissions-query" in value or "<supply-query" in value or "<query" in value):
+        query_var = value
+        print(f"✅ Found the query! It is stored in the variable: '{name}'")
+        break
+
+if query_var:
+    # 2. Run the query
+    df = db.runQuery(query_var, scenario='Reference')
+    
+    # 3. Setup and Plot
+    # We rename 'sector' to 'variable' to satisfy pyam's requirements
+    iam_df = pyam.IamDataFrame(df.rename(columns={'sector': 'variable', 'Units': 'unit'}))
+    
+    print("--- Generating Plot ---")
+    iam_df.plot(title="Emissions Over Time")
+else:
+    print("❌ Could not find a string variable that looks like a GCAM query.")
+    print("Here are your current variables—which one is the query?")
+    print([name for name in globals() if not name.startswith('_')])
