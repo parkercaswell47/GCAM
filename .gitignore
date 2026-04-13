@@ -29,3 +29,4 @@ __pycache__/
 .claude/
 .ipynb_checkpoints/
 output/
+scenarios/speizer2023/
